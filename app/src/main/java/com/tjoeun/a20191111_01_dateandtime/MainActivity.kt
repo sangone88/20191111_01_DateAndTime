@@ -1,6 +1,7 @@
 package com.tjoeun.a20191111_01_dateandtime
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,6 +42,27 @@ class MainActivity : BaseActivity() {
                 startDateTimeCalendar.get(Calendar.DAY_OF_MONTH))
 
             datePickerDialog.show()
+
+            startTimeBtn.setOnClickListener {
+
+                var timePickerDialog = TimePickerDialog(this,
+                TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
+
+                    startDateTimeCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    startDateTimeCalendar.set(Calendar.MINUTE, minute)
+
+                    var sdf = SimpleDateFormat("a h시 m분")
+                    startTimeBtn.text = sdf.format(startDateTimeCalendar.time)
+
+
+                },
+                    startDateTimeCalendar.get(Calendar.HOUR_OF_DAY),
+                    startDateTimeCalendar.get(Calendar.MINUTE),
+                    false)
+
+                timePickerDialog.show()
+
+            }
             
         }
     }
