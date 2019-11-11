@@ -6,11 +6,15 @@ import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
+import com.tjoeun.a20191111_01_dateandtime.datas.ScheduleType
 import kotlinx.android.synthetic.main.activity_edit_schedule.*
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class EditScheduleActivity : BaseActivity() {
+
+    var scheduleTypeList = ArrayList<ScheduleType>()
     
 //    시작 일자 / 시간을 모두 저장하고 있는 캘린더 변수.
 //    변수가 만들어지는 현재 일시가 저장되게 됨.
@@ -83,5 +87,13 @@ class EditScheduleActivity : BaseActivity() {
 
     override fun setValues() {
 
+        addScheduleTypes()
+    }
+
+    fun addScheduleTypes() {
+        scheduleTypeList.add(ScheduleType("개인 일정", "#FF0000"))
+        scheduleTypeList.add(ScheduleType("동아리 모임", "#00FF00"))
+        scheduleTypeList.add(ScheduleType("업무 일정", "#0000FF"))
+        scheduleTypeList.add(ScheduleType("공식 행사", "#000000"))
     }
 }
